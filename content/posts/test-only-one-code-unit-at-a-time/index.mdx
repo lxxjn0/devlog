@@ -22,11 +22,9 @@ slug: "/test-only-one-code-unit-at-a-time"
 ```java
 /* production code */
 public class MyService {
-
     public boolean isGreaterThanFive(final int number) {
         return number > 5;
     }
-
 }
 ```
 
@@ -46,7 +44,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class MyServiceTest {
-
     @Test
     public void isGreaterThanFive_GreaterThanFiveNumber_ReturnTrue() {
         // Given
@@ -70,7 +67,6 @@ public class MyServiceTest {
         // Then
         assertThat(actual).isFalse();
     }
-
 }
 ```
 
@@ -93,7 +89,6 @@ public class MyServiceTest {
 @DisplayName("calculate test")
 @Test
 void testCalculate() {
-
     Operator plus = new Operator("+");
     final Number one = new Number("1");
     final Number two = new Number("2");
@@ -187,7 +182,6 @@ void calculator_DivideOperator_DivideNumbers() {
     // Then
     assertThat(actual).isEqualTo(0.5);
 }
-
 ```
 
 각각의 테스트 메서드가 하나의 시나리오에 대한 검증만 담당하기 때문에 에러가 발생하더라도 어떤 시나리오에 대한 문제인지 바로 파악이 가능하다.

@@ -46,7 +46,6 @@ slug: "/appropriate-method-for-test-by-parameter"
 
 ```java
 public class Car {
-
     private static final int MOVABLE_LOWER_BOUND = 4;
     private static final int RANDOM_NUMBER_UPPER_BOUND = 10;
 
@@ -65,7 +64,6 @@ public class Car {
             position++;
         }
     }
-
 }
 ```
 
@@ -109,7 +107,6 @@ public void move(int number) {
 
 ```java
 public class CarTest {
-
     @DisplayName("숫자가 4보다 작으면 위치를 그대로 유지")
     @Test
     public void move_NumberIsLessThanFour_KeepPosition() {
@@ -135,7 +132,6 @@ public class CarTest {
         // Then
         assertThat(car).extracting("position").isEqualTo(2);
     }
-
 }
 ```
 
