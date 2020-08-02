@@ -5,13 +5,13 @@ description: Test only one code unit at a time
 tags:
   - Java
   - Test
-banner: ./unit-testing-image.jpg
+  - Woowacourse
 slug: "/test-only-one-code-unit-at-a-time"
 ---
 
-> 이 글은 [우아한테크코스 리뷰 페이지](https://woowacourse.github.io/review/)에 함께 게시된 글입니다
+> 이 글은 [우아한테크코스 리뷰 페이지](https://woowacourse.github.io/review/)에 함께 게시된 글입니다.
 
-<br/>
+<br />
 
 ## 단위 테스트(Unit Test)란
 
@@ -30,11 +30,11 @@ public class MyService {
 }
 ```
 
-`isGreaterThanFive`라는 메서드를 테스트 할 수 있는 방법은 2가지가 있다.
+`isGreaterThanFive()` 라는 메서드를 테스트 할 수 있는 방법은 2가지가 있다.
 
-- `number`가 5보다 커서 `true`를 리턴하는 경우
+- number가 5보다 커서 true를 리턴하는 경우
 
-- `number`가 5보다 작거나 같아서 `false`를 리턴하는 경우
+- number가 5보다 작거나 같아서 false를 리턴하는 경우
 
 이 두 가지 경우를 모두 테스트하기 위해서는 2개의 단위 테스트 메서드가 필요하다. 아래가 해당하는 2개의 단위 테스트 메서드들이다.
 
@@ -76,7 +76,7 @@ public class MyServiceTest {
 
 단위 테스트는 테스트를 해야 하는 시나리오의 개수만큼 작성되어야 한다. 만약 테스트를 해야 하는 경우가 5가지가 존재한다면 그 5가지 경우도 모두 작성해야 할 것이다.
 
-<br/>
+<br />
 
 ## 단위 테스트가 왜 필요한가
 
@@ -84,7 +84,7 @@ public class MyServiceTest {
 
 잘 구성된 테스트 코드는 이후 다른 변경 사항으로 인해 발생 가능한 결함을 찾아내는 역할을 한다.
 
-<br/>
+<br />
 
 ## 하나의 테스트 케이스는 단위 기능 중 하나의 시나리오만 테스트하라
 
@@ -131,7 +131,7 @@ void testCalculate() {
 
 그렇다면 위의 테스트 코드를 한번 살펴보고, 어떻게 수정해야 하는지 알아보자.
 
-테스트 코드를 보면 `testCalculator`라는 메서드에서 세 가지 경우(시나리오)를 테스트한다.
+테스트 코드를 보면 `testCalculator()`라는 메서드에서 세 가지 경우(시나리오)를 테스트한다.
 
 - `+` 연산에 대한 테스트
 
@@ -192,7 +192,7 @@ void calculator_DivideOperator_DivideNumbers() {
 
 각각의 테스트 메서드가 하나의 시나리오에 대한 검증만 담당하기 때문에 에러가 발생하더라도 어떤 시나리오에 대한 문제인지 바로 파악이 가능하다.
 
-<br/>
+<br />
 
 ## 정리하면
 
@@ -200,7 +200,7 @@ void calculator_DivideOperator_DivideNumbers() {
 
 따라서 **테스트 코드를 작성할 때 하나의 테스트 메서드는 하나의 시나리오에 대한 검증만 해서 어떠한 시나리오에서 문제가 발생했는지 명확히 알 수 있도록 하자!**
 
-<br/>
+<br />
 
 ## 참고 링크
 
