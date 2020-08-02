@@ -92,6 +92,7 @@ const theme = merge(tailwind, {
       borderLeftColor: `primary`,
       borderLeftStyle: `solid`,
       borderLeftWidth: `6px`,
+      color: `grey`,
       mx: 0,
       pl: 4,
       p: {
