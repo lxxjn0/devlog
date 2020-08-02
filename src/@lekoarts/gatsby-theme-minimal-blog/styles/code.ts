@@ -39,9 +39,9 @@ const code = {
     bg: `rgb(1, 22, 39)`,
     color: `rgb(214, 222, 235)`,
     borderRadius: `0.3rem`,
-    px: 2,
-    py: 1,
-    mx: 1,
+    px: 1,
+    py: 0.8,
+    mx: 0,
   },
   ".gatsby-highlight": {
     fontFamily: `'Fira Code','Input Mono','Source Sans pro','Consolas','menlo','NanumGothicCoding','D2Coding','monospace'`,
