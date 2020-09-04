@@ -38,10 +38,10 @@ const code = {
     fontSize: 1,
     bg: `rgb(1, 22, 39)`,
     color: `rgb(214, 222, 235)`,
-    borderRadius: `0.3rem`,
+    borderRadius: `0.2rem`,
     px: 1,
     py: 0.8,
-    mx: 0,
+    mx: 1,
   },
   ".gatsby-highlight": {
     fontFamily: `'Fira Code','Input Mono','Source Sans pro','Consolas','menlo','NanumGothicCoding','D2Coding','monospace'`,
