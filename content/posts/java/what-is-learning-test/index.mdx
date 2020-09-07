@@ -1,5 +1,5 @@
 ---
-title: "학습 테스트(Learning Test)란"
+title: "학습 테스트(Learning Test)란 무엇인가"
 date: 2020-02-06
 description: What is learning test
 tags:
@@ -20,6 +20,75 @@ slug: "/what-is-learning-test"
 
 학습 테스트는 기능 구현을 위한 테스트라기보다 새로운 API, 라이브러리, 프레임워크가 **어떻게 동작하는지 이해하기 위해** 작성하는 테스트 코드이다.
 
+## 학습 테스트 예시
+
+아래의 코드는 Java의 String API에 대한 학습 테스트이다.
+
+```java
+package com.woowacourse.study;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.*;
+
+@DisplayName("String API Test")
+public class StringTest {
+    @DisplayName("String API - split() Test")
+    @Test
+    void testSplit() {
+        final String value = "1,2";
+
+        final String[] actual = value.split(",");
+
+        assertThat(actual).contains("1");
+        assertThat(actual).contains("2");
+
+        final String value2 = "1";
+
+        final String[] actual2 = value2.split(",");
+
+        assertThat(actual2).containsExactly("1");
+    }
+
+    @DisplayName("String API - substring() Test")
+    @Test
+    void testSubstring() {
+        final int BRACKET_LENGTH = 1;
+        final String value = "(1,2)";
+        final String actual = value.substring(BRACKET_LENGTH, value.length() - BRACKET_LENGTH);
+        final String expected = "1,2";
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @DisplayName("String API - charAt() Test")
+    @Test
+    void testCharAt() {
+        final String value = "abc";
+        final int index = 0;
+
+        final char actual = value.charAt(index);
+
+        final char expected = 'a';
+
+        assertThat(actual).isEqualTo(expected);
+
+        final int outOfBoundIndex = 3;
+
+        assertThatThrownBy(() -> {
+            value.charAt(outOfBoundIndex);
+        }).isInstanceOf(StringIndexOutOfBoundsException.class)
+                .hasMessage("String index out of range: %d", outOfBoundIndex);
+
+        assertThatExceptionOfType(StringIndexOutOfBoundsException.class)
+                .isThrownBy(() -> {
+                    value.charAt(outOfBoundIndex);
+                }).withMessage("String index out of range: %d", outOfBoundIndex);
+    }
+}
+```
+
 ## 학습 테스트의 장점
 
 처음 학습 테스트를 작성하는 경우 그리 쉽지만은 않을 것이다. 그러나 만약 테스트를 작성하는데 익숙하다면 학습 테스트는 여러 장점들을 우리에게 가져다준다.
@@ -28,19 +97,19 @@ slug: "/what-is-learning-test"
 
 - 다양한 조건에 따른 기능을 손쉽게 확인해 볼 수 있다.
 
-- 학습 테스트 코드를 개발 중에 참고할 수 있다.
+- **학습 테스트 코드를 개발 중에 참고**할 수 있다.
 
     - API 호출 방법과 호출에 따른 결과를 알 수 있기 때문이다.
 
-- 프레임워크나 제품을 업그레이드할 때 호환성 검증을 보여준다.
+- 프레임워크나 제품을 업그레이드할 때 **호환성 검증**을 보여준다.
 
     - 추후 프로젝트에서 API와 같은 것들의 버전을 업그레이드 하더라도 학습테스트가 작성되어 있다면 이를 통해 호환성을 보장할 수 있다.
 
-- 테스트 작성에 대한 좋은 훈련이 된다.
+- **테스트 작성에 대한 좋은 훈련**이 된다.
 
 - 새로운 기술을 공부하는 과정이 즐거워진다.
 
-## 정리
+## 정리하면
 
 학습 테스트는 새로운 API나 라이브러리를 재밌게 익힐 수 있는 아주 좋은 방법이다.
 

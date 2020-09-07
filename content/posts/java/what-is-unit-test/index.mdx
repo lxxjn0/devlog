@@ -1,0 +1,150 @@
+---
+title: "단위 테스트(Unit Test)란 무엇인가"
+date: 2020-02-06
+description: What is unit test
+tags:
+  - Java
+  - Test
+slug: "/what-is-unit-test"
+---
+
+## 시작하기에 앞서
+
+이전에 [Java 코드를 테스트하는 방법, main method vs JUnit](https://lxxjn0-dev.netlify.app/java-test-way-main-method-vs-junit)라는 글에서 JUnit이 Java의 단위 테스트 작성 프레임워크라고 소개한 적이 있다.
+
+여기서 말하는 **단위 테스트(*Unit Test*)**란 무엇일까?
+
+> 단위? 메서드 단위? 클래스 단위? 패키지 단위?
+
+우리는 코드상의 단위를 여러 가지로 추측해 볼 수 있다.
+
+그렇다면 단위 테스트에서 말하는 단위가 무엇인지, 또 그 단위를 테스트하는 단위 테스트는 무엇인지에 대해 알아보자.
+
+## 테스트의 종류
+
+![test range](./test-range.png)
+
+테스트는 위의 이미지처럼 5개의 범위로 나눌 수 있다. 여기서 단위 테스트를 제외한 나머지는 아래와 같이 정의된다.
+
+- **통합 테스트(*Integration Test*)**: 여러 작업 단위가 연계된 워크플로우를 테스트하기 위한 수단(객체 간, 서비스 간, 시스템 간)
+
+- **기능 테스트(*Function Test*)**: 공개된 API의 가장 바깥쪽에 해당하는 코드 검사(Controller 호출, Security, http)
+
+- **부하 테스트(*Stress/load Test*)**: 주어진 단위 시간 동안 애플리케이션이 얼마나 많은 요청을 처리할 수 있는지 검사
+
+- **인수 테스트(*Acceptance Test*)**: 고객 또는 대리인이 정의된 모든 목적에 부합되는지 확인해보고자 하는 검사
+
+이 중에서 **단위 테스트(*Unit Test*)**는 가장 작은 범위로 실행하는 테스트이다.
+
+## 단위 테스트란
+
+> 유닛 테스트(unit test)는 컴퓨터 프로그래밍에서 소스 코드의 특정 모듈이 의도된 대로 정확히 작동하는지 검증하는 절차다. 즉, 모든 함수와 메소드에 대한 테스트 케이스(Test case)를 작성하는 절차를 말한다. 이를 통해서 언제라도 코드 변경으로 인해 문제가 발생할 경우, 단시간 내에 이를 파악하고 바로 잡을 수 있도록 해준다.
+>
+> 이상적으로, 각 테스트 케이스는 서로 분리되어야 한다. 이를 위해 가짜 객체(Mock object)를 생성하는 것도 좋은 방법이다. 유닛 테스트는 (일반적인 테스트와 달리) 개발자(developer) 뿐만 아니라 보다 더 심도있는 테스트를 위해 테스터(tester)에 의해 수행되기도 한다. - [wikipedia](https://ko.wikipedia.org/wiki/%EC%9C%A0%EB%8B%9B_%ED%85%8C%EC%8A%A4%ED%8A%B8)
+
+단위 테스트는 특정 모듈이나 애플리케이션 안에 있는 개별적인 코드 단위가 예상대로 작동하는지 확인하는 반복적인 행위이다.
+
+'예상대로 작동하는지'라는 말은 동일한 input을 주었을 때 항상 같은 output을 내주는 것이다. 테스트 코드는 이를 확인하고 보장해준다.
+
+단위 테스트를 작성하는 방법은 흔히 작성하는 테스트 코드와 방법이 같다.
+
+간단하게 아래의 예시를 살펴보자.
+
+```java
+/* production code */
+public class MyService {
+
+    public boolean isGreaterThanFive(final int number) {
+        return number > 5;
+    }
+
+}
+```
+
+MyService 클래스의 `isGreaterThanFive()`는 숫자가 5보다 클 경우 true를, 5보다 작거나 같을 경우 false를 반환한다.
+
+그렇다면 해당 메서드(일종의 작은 모듈)을 테스트하기 위해서는 어떤 것을 테스트해야 할까?
+
+- 5보다 큰 값이 들어갈 경우 true를 반환한다.
+
+- 5보다 작거나 같은 값이 들어갈 경우 false를 반환한다.
+
+이 두 가지 시나리오를 테스트할 수 있다.
+
+아래는 이 두 가지 시나리오에 대한 테스트 코드이다.
+
+```java
+/* test code */
+import static org.assertj.core.api.Assertions.*;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+public class MyServiceTest {
+
+    @Test
+    public void isGreaterThanFive_GreaterThanFiveNumber_ReturnTrue() {
+        // Given
+        final MyService myService = new MyService();
+
+        // When
+        final boolean actual = myService.isGreaterThanFive(6);
+
+        // Then
+        assertThat(actual).isTrue();
+    }
+
+    @Test
+    public void isGreaterThanFive_NotGreaterThanFiveNumber_ReturnFalse() {
+        // Given
+        final MyService myService = new MyService();
+
+        // When
+        final boolean actual = myService.isGreaterThanFive(5);
+
+        // Then
+        assertThat(actual).isFalse();
+    }
+
+}
+```
+
+이처럼 테스트 코드는 해당 모듈에서 발생할 수 있는 시나리오를 단위로 작성해야 한다.
+
+그럼 우리는 앞서 고민했던 **단위**는 무엇인지, 단위 테스트는 무엇인지에 대해 간략하게 파악하였다.
+
+**단위**는 **특정 모듈이 동작하는 작은 시나리오**이고, **단위 테스트**는 이 시나리오가 **정상적으로 동작하는지 확인하기 위한 테스트 코드**이다.
+
+> 단위 테스트를 어떻게 작성해야 하는지 더 알아보고 싶다면 [하나의 테스트 케이스는 단위 기능 중 하나의 시나리오만 테스트하라](https://lxxjn0-dev.netlify.app/test-only-one-code-unit-at-a-time) 글을 참고하면 된다.
+
+## 단위 테스트가 필요한 이유
+
+그렇다면 왜 단위 테스트를 작성해야 할까?
+
+단위 테스트를 작성하면 **특정 모듈(작게는 메서드)이 기대한 대로 잘 동작하고 있음을 보장**하고, 만약 추후 **코드의 변경이 발생**할 경우에 테스트 코드가 이를 잡아주는 역할을 한다.
+
+그리고 테스트 코드는 실제 프로덕션 코드를 어떻게 작성해야 하는지 생각하는데도 도움을 준다.
+
+> 이런 관점에서 **TDD(*Test Driven Development*)**가 등장한 것이 아닐까?
+
+추가적인 장점으로는 구현 코드의 품질을 향상해준다.
+
+테스트 코드는 특정 모듈을 단위로 작성된다. 만약 테스트 코드를 작성하는 도중, 해당 모듈이 너무 많은 일을 맡고 있다는 생각이 들면 이는 리팩토링의 대상이 될 수도 있을 것이다.
+
+## 정리하면
+
+단위 테스트는 특정 모듈에 대한 기능을 테스트하는 코드이다.
+
+테스트(단위 테스트뿐만 아니라)를 작성하는 작업은 처음에는 생각보다 번거롭고 귀찮은 작업일 수 있다.
+
+그러나 나중에 이런 작업은 코드를 수정하는 작업을 진행할 때 방파제처럼 든든한 버팀목이 되어준다.
+
+테스트 코드를 작성함으로 얻을 수 있는 장점이 많고 현재 개발자들에게 테스트 코드를 작성하는 습관은 개발자의 필수 덕목으로 자리 잡은 만큼 조금 시간이 들더라도 습관적인 연습을 해나가길 추천한다.
+
+## 참고 링크
+
+> [[Unit-Test] 하고 계신가요? 개발자 단위 테스트 - 사바라다는 차곡차곡](https://sabarada.tistory.com/68)
+>
+> [단위 테스트란 무엇인가? - cjh5414](https://cjh5414.github.io/why-pytest/)
+>
+> [단위 테스트는 왜 해야할까 - 필오의 개발 docs](https://feel5ny.github.io/2017/12/08/TDD_01/)
