@@ -11,8 +11,6 @@ slug: "/caching-instance"
 
 > 이 글은 [우아한테크코스 리뷰 페이지](https://woowacourse.github.io/javable/2020-06-24/caching-instance)에 함께 게시된 글입니다.
 
-<br />
-
 ## 캐싱(Caching)이란
 
 캐싱을 알아보기 전에 캐시의 사전적인 정의를 알아보자.
@@ -24,8 +22,6 @@ slug: "/caching-instance"
 캐싱은 컴퓨터 분야에서 다양하게 사용된다. CPU에서도 성능 향상을 위해 사용되고 메모리, 웹 페이지를 동작시키는 분야까지 분야를 가리지 않고 사용된다.
 
 그럼 이번에 소개할 **반복적으로 사용되는 인스턴스 캐싱하기**란 어떤 상황을 말하는 것일까? Java Wrapper Class의 캐싱을 예시로 살펴보도록 하자.
-
-<br/>
 
 ## Java Wrapper Class
 
@@ -185,8 +181,6 @@ public static Integer valueOf(int i) {
 
 IntegerCache의 low와 high 사이의 값일 경우 IntegerCache의 cache에 저장된 값을 반환하고 그 외의 경우 새로 Integer 인스턴스를 생성하여 반환한다. 즉 캐싱해둔 범위 내의 숫자일 경우 **캐싱한 인스턴스를 반환**하고 범위 밖의 수일 경우 새로 인스턴스를 생성하여 반환하는 방식이 Integer의 캐싱이다.
 
-<br/>
-
 ## Lotto 미션에서의 캐싱
 
 [Lotto 미션](https://github.com/woowacourse/java-lotto)을 진행하면서 이러한 피드백이 있었다.
@@ -329,8 +323,6 @@ public class LottoNumberGenerator {
 
 위와 같이 코드를 구현하면 우리가 지정한 LottoNumber의 범위(1 ~ 45) 내에서는 동일한 인스턴스를 반환하게 된다. 캐싱을 함으로써 이전에 수십만 개의 LottoNumber를 생성함으로 발생하는 메모리 낭비 문제를 해결할 수 있다.
 
-<br />
-
 ## 정리
 
 위에서 소개한 예시를 통해 간단한 프로그램이라도 캐싱을 통해 성능적인 향상을 가져올 수 있음을 확인하였다.
@@ -338,8 +330,6 @@ public class LottoNumberGenerator {
 앞으로 코딩을 하면서 이런 사소해 보이지만 성능 향상에 영향을 미치는 기술들을 자주 접할 것이다.
 
 '우리 프로그램에서 이 정도까지 필요하겠어?'라는 생각보다는 매사에 최선의 성능을 제공할 수 있도록 고민하고 노력하는 프로그래머가 돼보는 것은 어떨까?
-
-<br />
 
 ## 참고 링크
 
