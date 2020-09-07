@@ -1,4 +1,4 @@
-# devlog
+# 🖋 devlog
 
 > 개발과 관련된 내용을 기록하는 블로그 Repository
 
