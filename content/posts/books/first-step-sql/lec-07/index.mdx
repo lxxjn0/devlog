@@ -40,7 +40,7 @@ SELECT * FROM sample24;
 
 해당 연산자를 사용하여 `AND`를 사용한 조건식을 만들어보면 아래와 같을 것이다.
 
-(결과에는 **no열이 4인 행**만 나와야 할 것이다)
+> 결과에는 **no열이 4인 행**만 나와야 할 것이다.
 
 ```sql
 SELECT * FROM sample24 WHERE a <> 0 AND b <> 0;
@@ -74,7 +74,7 @@ SELECT * FROM sample24 WHERE a <> 0 OR b <> 0;
 
 위의 `SELECT` 명령은 **a열이 0이거나 또는 b열이 0인 열**을 검색하는 조건이다.
 
-(결과는 no가 1, 2, 4, 5가 나와야 할 것이다)
+> 결과는 no가 1, 2, 4, 5가 나와야 할 것이다.
 
 ![select with or operator](./or-result.png)
 
@@ -128,7 +128,7 @@ SELECT * FROM sample24 WHERE a = 1 OR a = 2 AND b = 1 OR b = 2;
 
 이상하게도 이전의 조회 결과와 **다른 결과가 반환**되었다.
 
-(no열이 1인 행은 b열의 값이 0이고 no열이 5인 행은 a열의 값이 0이다)
+> no열이 1인 행은 b열의 값이 0이고 no열이 5인 행은 a열의 값이 0이다.
 
 왜 이런 결과가 나온 것일까?
 
