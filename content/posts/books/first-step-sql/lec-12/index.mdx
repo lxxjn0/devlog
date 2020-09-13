@@ -260,6 +260,10 @@ SELECT *, ROUND(amount, 1) FROM sample341;
 
 두 번째 인수로 **음수**도 지원하는데 **-1은 1단위, -2는 10단위, -3은 100단위**와 같이 지정 가능하다.
 
+```sql
+SELECT *, ROUND(amount, -2) FROM sample341;
+```
+
 ![round with ten](./13-round-with-ten.png)
 
 그 밖에도 다양한 함수들이 존재한다.
