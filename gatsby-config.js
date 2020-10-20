@@ -42,6 +42,10 @@ module.exports = {
             name: `Instagram`,
             url: `https://www.instagram.com/lxxjn0_`,
           },
+          {
+            name: `Resume`,
+            url: `https://lxxjn0-resume.netlify.app/`,
+          },
         ],
       },
     },
