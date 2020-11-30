@@ -7,8 +7,8 @@ module.exports = {
     siteTitle: `young's devlog`,
     siteTitleAlt: `young's devlog`,
     siteHeadline: `young's devlog`,
-    siteUrl: `https://lxxjn0-dev.netlify.com`,
-    siteDescription: `junior back-end developer's devlog`,
+    siteUrl: `https://lxxjn0-dev.netlify.app`,
+    siteDescription: `자바 주니어 백엔드 개발자의 학습 내용을 담고있는 블로그입니다.`,
     siteLanguage: `KR`,
     siteImage: `/banner.jpg`,
     author: `lxxjn0`,
@@ -18,7 +18,7 @@ module.exports = {
       resolve: `@lekoarts/gatsby-theme-minimal-blog`,
       // See the theme's README for all available options
       options: {
-        formatString: "MM.DD.YYYY",
+        formatString: 'MM.DD.YYYY',
         navigation: [
           {
             title: `About`,
@@ -83,6 +83,14 @@ module.exports = {
     `gatsby-plugin-offline`,
     `gatsby-plugin-netlify`,
     {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://lxxjn0-dev.netlify.app',
+        sitemap: 'https://lxxjn0-dev.netlify.app/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }]
+      }
+    },
+    {
       resolve: `gatsby-plugin-feed`,
       options: {
         query: `
@@ -106,7 +114,7 @@ module.exports = {
                   date: node.date,
                   url: site.siteMetadata.siteUrl + node.slug,
                   guid: site.siteMetadata.siteUrl + node.slug,
-                  custom_elements: [{ "content:encoded": node.html }],
+                  custom_elements: [{ 'content:encoded': node.html }],
                 })
               })
             },
@@ -129,15 +137,15 @@ module.exports = {
                 }
               }
             `,
-            output: "/rss.xml",
-            title: "young's devlog RSS Feed",
+            output: '/rss.xml',
+            title: 'young\'s devlog RSS Feed',
             // optional configuration to insert feed reference in pages:
             // if `string` is used, it will be used to create RegExp and then test if pathname of
             // current page satisfied this regular expression;
             // if not provided or `undefined`, all pages will have feed reference inserted
-            match: "^/",
+            match: '^/',
             // optional configuration to specify external rss feed, such as feedburner
-            link: "https://feeds.feedburner.com/gatsby/blog",
+            link: 'https://feeds.feedburner.com/gatsby/blog',
           },
         ],
       },
